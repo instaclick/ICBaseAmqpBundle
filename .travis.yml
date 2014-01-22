@@ -6,6 +6,6 @@ php:
   - 5.5
 
 before_script:
-    - pecl install amqp
+    - pecl install amqp -s
     - wget http://getcomposer.org/composer.phar
     - php composer.phar install --dev
