@@ -16,7 +16,7 @@ use Symfony\Component\DependencyInjection\Reference;
  * @group Unit
  * @group DependencyInjection
  *
- * @author Guilherme Blanco <guilhermeblanco@hormail.com>
+ * @author Guilherme Blanco <guilhermeblanco@hotmail.com>
  * @author John Cartwright <jcartdev@gmail.com>
  */
 class ICBaseAmqpExtensionTest extends ExtensionTestCase
