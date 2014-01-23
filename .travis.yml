@@ -7,5 +7,10 @@ php:
 
 before_script:
     - pecl install -f amqp
-    - wget http://getcomposer.org/composer.phar
-    - php composer.phar install --dev
+    - composer install --dev
+    - pyrus install pear/PHP_CodeSniffer
+    - phpenv rehash
+
+script:
+    - phpunit
+    - phpcs -np --extensions=php --ignore=vendor/*,Tests/* --standard=PSR2 .
