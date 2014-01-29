@@ -27,9 +27,9 @@
     "require-dev": {
         "phpunit/PHPUnit": "3.7.*",
         "instaclick/base-test-bundle": "dev-master",
-        "squizlabs/php_codesniffer": "dev-master#580e888",
-        "instaclick/symfony2-coding-standard": "dev-remaster#180a19d",
-        "instaclick/object-calisthenics-sniffs": "dev-master#498e162",
+        "squizlabs/php_codesniffer": "dev-master",
+        "instaclick/symfony2-coding-standard": "dev-remaster",
+        "instaclick/object-calisthenics-sniffs": "dev-master",
         "instaclick/coding-standard": "1.1"
     },
     "autoload": {
