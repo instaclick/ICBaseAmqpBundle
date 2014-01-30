@@ -82,10 +82,10 @@ check the following sample:
 ```
 
 ```php
-$connection = $this->container->get('ic_base_amqp.connections.default');
-$channels   = $this->container->get('ic_base_amqp.channels.default');
-$exchanges  = $this->container->get('ic_base_amqp.exchanges.manolo_exchange');
-$queue      = $this->container->get('ic_base_amqp.queues.manolo_queue');
+$connection = $this->container->get('ic_base_amqp.connection.default');
+$channels   = $this->container->get('ic_base_amqp.channel.default');
+$exchanges  = $this->container->get('ic_base_amqp.exchange.manolo_exchange');
+$queue      = $this->container->get('ic_base_amqp.queue.manolo_queue');
 ```
 
 ## Usage
