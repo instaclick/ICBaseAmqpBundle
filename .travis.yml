@@ -8,9 +8,7 @@ php:
 before_script:
     - pecl install -f amqp
     - composer install --dev
-    - pyrus install pear/PHP_CodeSniffer
-    - phpenv rehash
 
 script:
     - phpunit
-    - phpcs -np --extensions=php --ignore=vendor/*,Tests/* --standard=PSR2 .
+    - vendor/bin/phpcs -np --extensions=php --ignore=vendor/*,Tests/* --standard=ruleset.xml .
