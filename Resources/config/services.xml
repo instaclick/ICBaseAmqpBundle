@@ -7,7 +7,7 @@
     <parameters>
         <parameter key="ic_base_amqp.class.connection">AMQPConnection</parameter>
         <parameter key="ic_base_amqp.class.channel">AMQPChannel</parameter>
-        <parameter key="ic_base_amqp.class.exchange">AmqpExchange</parameter>
+        <parameter key="ic_base_amqp.class.exchange">AMQPExchange</parameter>
         <parameter key="ic_base_amqp.class.queue">IC\Bundle\Base\AmqpBundle\Amqp\Queue</parameter>
     </parameters>
 
