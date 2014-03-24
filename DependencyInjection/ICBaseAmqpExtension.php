@@ -81,14 +81,24 @@ class ICBaseAmqpExtension extends Extension
      */
     private function initializeExchangeDefinitionList(array $exchangeList, ContainerBuilder $container)
     {
-        $exchangeClass = $container->getParameter('ic_base_amqp.class.exchange');
+        $exchangeClass           = $container->getParameter('ic_base_amqp.class.exchange');
+        $exchangeListClass       = $container->getParameter('ic_base_amqp.class.exchange_list');
+        $exchangeListDefinition  = new Definition($exchangeListClass);
+        $exchangeListServiceId   = 'ic_base_amqp.service.exchange_list';
 
         foreach ($exchangeList as $exchangeKey => $exchangeConfiguration) {
             $exchangeServiceId  = sprintf('ic_base_amqp.exchange.%s', $exchangeKey);
             $exchangeDefinition = $this->createExchangeDefinition($exchangeKey, $exchangeClass, $exchangeConfiguration);
 
             $container->setDefinition($exchangeServiceId, $exchangeDefinition);
+
+            $exchangeListDefinition->addMethodCall(
+                'set',
+                array($exchangeServiceId, new Reference($exchangeServiceId))
+            );
         }
+
+        $container->setDefinition($exchangeListServiceId, $exchangeListDefinition);
     }
 
     /**
@@ -99,14 +109,24 @@ class ICBaseAmqpExtension extends Extension
      */
     private function initializeQueueDefinitionList(array $queueList, ContainerBuilder $container)
     {
-        $queueClass = $container->getParameter('ic_base_amqp.class.queue');
+        $queueClass           = $container->getParameter('ic_base_amqp.class.queue');
+        $queueListClass       = $container->getParameter('ic_base_amqp.class.queue_list');
+        $queueListDefinition  = new Definition($queueListClass);
+        $queueListServiceId   = 'ic_base_amqp.service.queue_list';
 
         foreach ($queueList as $queueKey => $queueConfiguration) {
             $queueServiceId  = sprintf('ic_base_amqp.queue.%s', $queueKey);
             $queueDefinition = $this->createQueueDefinition($queueKey, $queueClass, $queueConfiguration);
 
             $container->setDefinition($queueServiceId, $queueDefinition);
+
+            $queueListDefinition->addMethodCall(
+                'set',
+                array($queueServiceId, new Reference($queueServiceId))
+            );
         }
+
+        $container->setDefinition($queueListServiceId, $queueListDefinition);
     }
 
     /**
