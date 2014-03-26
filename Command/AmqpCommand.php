@@ -244,6 +244,8 @@ abstract class AmqpCommand extends ContainerAwareCommand
      */
     protected function getTagged()
     {
-        return $this->getContainer()->get($this->serviceName);
+        $taggedList = $this->getContainer()->get($this->serviceName);
+
+        return $taggedList;
     }
 }
