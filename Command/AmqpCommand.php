@@ -224,8 +224,11 @@ abstract class AmqpCommand extends ContainerAwareCommand
         $declared = 0;
 
         foreach ($list as $key => $service) {
+            $declareMethod = $service instanceof \AmqpExchange ? 'declareExchange' : 'declareQueue';
+
             try {
-                $service->declare();
+                call_user_func(array($service, $declareMethod));
+
                 $output->writeln(sprintf("<info>[%s [ %s ] ]</info>", $key, $service->getName()));
 
                 $declared++;
