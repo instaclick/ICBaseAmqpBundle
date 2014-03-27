@@ -24,7 +24,7 @@ class Queue extends \AmqpQueue
     {
         $this->consumeBinding();
 
-        return parent::consume($callback, $flags, $consumer_tag = null);
+        return parent::consume($callback, $flags, $consumer_tag);
     }
 
     /**
