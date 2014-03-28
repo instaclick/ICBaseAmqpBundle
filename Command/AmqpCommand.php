@@ -93,7 +93,6 @@ abstract class AmqpCommand extends ContainerAwareCommand
             ($input->getOption('declare') === false && $input->getOption('delete') === false)) {
             $output->writeln('<error>You should provide at least and exchange list</error>');
             $output->writeln('<info>Usage: '.$this->commandName.' --declare=true --all=true</info>');
-            $output->writeln('<info>Usage: '.$this->commandName.' --delete=true --all=true</info>');
             $output->writeln('<info>Usage: '.$this->commandName.' --declare=true my.configured.parameter.1 my.configured.parameter.2 my.configured.parameter.N</info>');
             $output->writeln('<info>Usage: '.$this->commandName.' --delete=true my.configured.parameter.1 my.configured.parameter.2 my.configured.parameter.N</info>');
 
