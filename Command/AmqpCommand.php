@@ -115,6 +115,10 @@ abstract class AmqpCommand extends ContainerAwareCommand
         $action = ($input->getOption('delete')) ? self::ACTION_DELETE: self::ACTION_DECLARE;
         $method = strtolower($action).ucfirst(strtolower($target));
 
+        if ( ! method_exists($this, $method)) {
+            throw new \RuntimeException(sprintf("[error] the combination --%s=true --%s=true does not exists", strtolower($action), strtolower($target)));
+        }
+
         $this->$method($input, $output);
     }
 
@@ -129,19 +133,6 @@ abstract class AmqpCommand extends ContainerAwareCommand
         $list = $this->getTagged();
 
         $this->publish($list, $output);
-    }
-
-    /**
-     * Delete all the queues/exchanges present in the config file
-     *
-     * @param \Symfony\Component\Console\Input\InputInterface   $input
-     * @param \Symfony\Component\Console\Output\OutputInterface $output
-     */
-    private function deleteAll(InputInterface $input, OutputInterface $output)
-    {
-        $list = $this->getTagged();
-
-        $this->delete($list, $output);
     }
 
     /**
@@ -197,15 +188,52 @@ abstract class AmqpCommand extends ContainerAwareCommand
     {
         $deleted = 0;
 
-        foreach ($list as $key => $service) {
-            try {
-                $service->delete();
-                $output->writeln(sprintf("<info>[%s [ %s ] ]</info>", $key, $service->getName()));
+        // var_dump($list);
+        // var_dump($list->offsetGet(0));
+        // exit();
 
-                $deleted++;
-            } catch (\Exception $e) {
-                throw new \RuntimeException(sprintf("<error>[%s [ %s ] ] %s</error>", $key, $service->getName(), $e->getMessage()), $e->getCode(), $e);
-            }
+        try {
+            $list->get('ic_base_amqp.exchange.affiliate_log')->delete();
+        } catch (\Exception $ex) {
+            echo 'FUCK1';
+        }
+        try {
+            $list->get('ic_base_amqp.exchange.affiliate_site_event')->delete();
+        } catch (\Exception $ex) {
+            echo 'FUCK2';
+        }
+        try {
+            $list->get('ic_base_amqp.exchange.affiliate_site_event')->delete();
+        } catch (\Exception $ex) {
+            echo 'FUCK3';
+        }
+        try {
+            $list->get('ic_base_amqp.exchange.affiliate_tracking_lead')->delete();
+        } catch (\Exception $ex) {
+            echo 'FUCK4';
+        }
+        try {
+            $list->get('ic_base_amqp.exchange.affiliate_raw_log_event')->delete();
+        } catch (\Exception $ex) {
+            echo 'FUCK5';
+        }
+
+        exit('ok!');
+
+        foreach ($list as $key => $service) {
+            $name = $service->getName();
+
+            // try {
+
+            // } catch (\AMQPExchangeException $e) {
+            //     echo "Hey";
+            //   //  continue 2;
+            //   // throw new \RuntimeException(sprintf("<error>[%s [ %s ] : %s ]</error>", $key, $name, $e->getMessage()));
+            // }
+
+            $output->writeln(sprintf("<info>[%s [ %s ] ]</info>", $key, $name));
+
+            $deleted++;
         }
 
         $output->writeln(sprintf("<info>Total of %d deleted</info>", $deleted));
@@ -224,11 +252,8 @@ abstract class AmqpCommand extends ContainerAwareCommand
         $declared = 0;
 
         foreach ($list as $key => $service) {
-            $declareMethod = $service instanceof \AmqpExchange ? 'declareExchange' : 'declareQueue';
-
             try {
-                call_user_func(array($service, $declareMethod));
-
+                $service->declare();
                 $output->writeln(sprintf("<info>[%s [ %s ] ]</info>", $key, $service->getName()));
 
                 $declared++;
