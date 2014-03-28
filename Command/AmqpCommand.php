@@ -187,48 +187,14 @@ abstract class AmqpCommand extends ContainerAwareCommand
     {
         $deleted = 0;
 
-        // var_dump($list);
-        // var_dump($list->offsetGet(0));
-        // exit();
-
-        try {
-            $list->get('ic_base_amqp.exchange.affiliate_log')->delete();
-        } catch (\Exception $ex) {
-            echo 'FUCK1';
-        }
-        try {
-            $list->get('ic_base_amqp.exchange.affiliate_site_event')->delete();
-        } catch (\Exception $ex) {
-            echo 'FUCK2';
-        }
-        try {
-            $list->get('ic_base_amqp.exchange.affiliate_site_event')->delete();
-        } catch (\Exception $ex) {
-            echo 'FUCK3';
-        }
-        try {
-            $list->get('ic_base_amqp.exchange.affiliate_tracking_lead')->delete();
-        } catch (\Exception $ex) {
-            echo 'FUCK4';
-        }
-        try {
-            $list->get('ic_base_amqp.exchange.affiliate_raw_log_event')->delete();
-        } catch (\Exception $ex) {
-            echo 'FUCK5';
-        }
-
-        exit('ok!');
-
         foreach ($list as $key => $service) {
             $name = $service->getName();
 
-            // try {
-
-            // } catch (\AMQPExchangeException $e) {
-            //     echo "Hey";
-            //   //  continue 2;
-            //   // throw new \RuntimeException(sprintf("<error>[%s [ %s ] : %s ]</error>", $key, $name, $e->getMessage()));
-            // }
+            try {
+                $service->delete();
+            } catch (\Exception $e) {
+                throw new \RuntimeException(sprintf("<error>[%s [ %s ] : %s ]</error>", $key, $name, $e->getMessage()));
+            }
 
             $output->writeln(sprintf("<info>[%s [ %s ] ]</info>", $key, $name));
 
