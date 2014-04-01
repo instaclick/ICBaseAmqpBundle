@@ -11,6 +11,23 @@
         <parameter key="ic_base_amqp.class.queue">IC\Bundle\Base\AmqpBundle\Amqp\Queue</parameter>
         <parameter key="ic_base_amqp.class.exchange_list">Doctrine\Common\Collections\ArrayCollection</parameter>
         <parameter key="ic_base_amqp.class.queue_list">Doctrine\Common\Collections\ArrayCollection</parameter>
+        <parameter key="ic_base_amqp.class.exchange_service">IC\Bundle\Base\AmqpBundle\Service\ExchangeService</parameter>
+        <parameter key="ic_base_amqp.class.queue_service">IC\Bundle\Base\AmqpBundle\Service\QueueService</parameter>
     </parameters>
+
+    <services>
+        <service id="ic_base_amqp.service.exchange"
+                 class="%ic_base_amqp.class.exchange_service%">
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
+        <service id="ic_base_amqp.service.queue"
+                 class="%ic_base_amqp.class.queue_service%">
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
+    </services>
 
 </container>
