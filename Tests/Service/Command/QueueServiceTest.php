@@ -294,6 +294,7 @@ class QueueServiceTest extends TestCase
     private function createContainerMock($returnMock)
     {
         $containerMock = $this->createMock('Symfony\Component\DependencyInjection\ContainerInterface');
+
         $containerMock->expects($this->atLeastOnce())
             ->method('get')
             ->will($this->returnValue($returnMock));
@@ -312,6 +313,7 @@ class QueueServiceTest extends TestCase
     private function createAmqpQueueMock($method, $returnValue)
     {
         $amqpQueueMock = $this->createMock('\AmqpQueue');
+
         $amqpQueueMock->expects($this->at(0))
             ->method($method)
             ->will($returnValue);

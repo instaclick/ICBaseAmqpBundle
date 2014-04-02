@@ -294,6 +294,7 @@ class ExchangeServiceTest extends TestCase
     private function createContainerMock($returnMock)
     {
         $containerMock = $this->createMock('Symfony\Component\DependencyInjection\ContainerInterface');
+
         $containerMock->expects($this->atLeastOnce())
             ->method('get')
             ->will($this->returnValue($returnMock));
@@ -312,6 +313,7 @@ class ExchangeServiceTest extends TestCase
     private function createAmqpExchangeMock($method, $returnValue)
     {
         $amqpExchangeMock = $this->createMock('\AmqpExchange');
+
         $amqpExchangeMock->expects($this->at(0))
             ->method($method)
             ->will($returnValue);
