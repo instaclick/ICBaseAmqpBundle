@@ -11,19 +11,19 @@
         <parameter key="ic_base_amqp.class.queue">IC\Bundle\Base\AmqpBundle\Amqp\Queue</parameter>
         <parameter key="ic_base_amqp.class.exchange_list">Doctrine\Common\Collections\ArrayCollection</parameter>
         <parameter key="ic_base_amqp.class.queue_list">Doctrine\Common\Collections\ArrayCollection</parameter>
-        <parameter key="ic_base_amqp.class.exchange_service">IC\Bundle\Base\AmqpBundle\Service\ExchangeService</parameter>
-        <parameter key="ic_base_amqp.class.queue_service">IC\Bundle\Base\AmqpBundle\Service\QueueService</parameter>
+        <parameter key="ic_base_amqp.class.command.exchange_service">IC\Bundle\Base\AmqpBundle\Service\Command\ExchangeService</parameter>
+        <parameter key="ic_base_amqp.class.command.queue_service">IC\Bundle\Base\AmqpBundle\Service\Command\QueueService</parameter>
     </parameters>
 
     <services>
-        <service id="ic_base_amqp.service.exchange"
-                 class="%ic_base_amqp.class.exchange_service%">
+        <service id="ic_base_amqp.service.command_exchange"
+                 class="%ic_base_amqp.class.command.exchange_service%">
             <call method="setContainer">
                 <argument type="service" id="service_container" />
             </call>
         </service>
-        <service id="ic_base_amqp.service.queue"
-                 class="%ic_base_amqp.class.queue_service%">
+        <service id="ic_base_amqp.service.command_queue"
+                 class="%ic_base_amqp.class.command.queue_service%">
             <call method="setContainer">
                 <argument type="service" id="service_container" />
             </call>

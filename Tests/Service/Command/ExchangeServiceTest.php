@@ -3,10 +3,10 @@
  * @copyright 2014 Instaclick Inc.
  */
 
-namespace IC\Bundle\Base\AmqpBundle\Tests\Service;
+namespace IC\Bundle\Base\AmqpBundle\Tests\Service\Command;
 
 use IC\Bundle\Base\TestBundle\Test\TestCase;
-use IC\Bundle\Base\AmqpBundle\Service\ExchangeService;
+use IC\Bundle\Base\AmqpBundle\Service\Command\ExchangeService;
 
 /**
  * Service layer to remove exchange
@@ -26,7 +26,8 @@ class ExchangeServiceTest extends TestCase
      */
     public function testShouldFindAll($exchangeList)
     {
-        $service = new ExchangeService;
+        $service = new ExchangeService();
+
         $service->setContainer(
             $this->createContainerMock(
                 $exchangeList
@@ -45,7 +46,8 @@ class ExchangeServiceTest extends TestCase
      */
     public function testShouldAnnounceExchange($exchangeName)
     {
-        $service = new ExchangeService;
+        $service = new ExchangeService();
+
         $service->setContainer(
             $this->createContainerMock(
                 $this->createAmqpExchangeMock(
@@ -70,7 +72,8 @@ class ExchangeServiceTest extends TestCase
      */
     public function testShouldAnnounceExchangeList($exchangeList)
     {
-        $service = new ExchangeService;
+        $service = new ExchangeService();
+
         $service->setContainer(
             $this->createContainerMock(
                 $this->createAmqpExchangeMock(
@@ -94,7 +97,8 @@ class ExchangeServiceTest extends TestCase
      */
     public function testShouldNotAnnounceExchange($exchangeName)
     {
-        $service = new ExchangeService;
+        $service = new ExchangeService();
+
         $service->setContainer(
             $this->createContainerMock(
                 $this->createAmqpExchangeMock(
@@ -120,7 +124,8 @@ class ExchangeServiceTest extends TestCase
      */
     public function testShouldThrowExceptionOnAnnounceExchange($exchangeName)
     {
-        $service = new ExchangeService;
+        $service = new ExchangeService();
+
         $service->setContainer(
             $this->createContainerMock(
                 $this->createAmqpExchangeMock(
@@ -145,7 +150,8 @@ class ExchangeServiceTest extends TestCase
      */
     public function testShouldDeleteExchange($exchangeName)
     {
-        $service = new ExchangeService;
+        $service = new ExchangeService();
+
         $service->setContainer(
             $this->createContainerMock(
                 $this->createAmqpExchangeMock(
@@ -170,7 +176,8 @@ class ExchangeServiceTest extends TestCase
      */
     public function testShouldDeleteExchangeList($exchangeList)
     {
-        $service = new ExchangeService;
+        $service = new ExchangeService();
+
         $service->setContainer(
             $this->createContainerMock(
                 $this->createAmqpExchangeMock(
@@ -194,7 +201,8 @@ class ExchangeServiceTest extends TestCase
      */
     public function testShouldNotDeleteExchange($exchangeName)
     {
-        $service = new ExchangeService;
+        $service = new ExchangeService();
+
         $service->setContainer(
             $this->createContainerMock(
                 $this->createAmqpExchangeMock(
@@ -220,7 +228,8 @@ class ExchangeServiceTest extends TestCase
      */
     public function testShouldThrowExceptionOnDeleteExchange($exchangeName)
     {
-        $service = new ExchangeService;
+        $service = new ExchangeService();
+
         $service->setContainer(
             $this->createContainerMock(
                 $this->createAmqpExchangeMock(

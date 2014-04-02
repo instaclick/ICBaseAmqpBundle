@@ -3,7 +3,7 @@
  * @copyright 2014 Instaclick Inc.
  */
 
-namespace IC\Bundle\Base\AmqpBundle\Service;
+namespace IC\Bundle\Base\AmqpBundle\Service\Command;
 
 /**
  * Queue service layer
@@ -13,14 +13,9 @@ namespace IC\Bundle\Base\AmqpBundle\Service;
 class QueueService extends AbstractAmqpService
 {
     /**
-     * {@inheritdoc}
+     * @var string
      */
-    public function __construct()
-    {
-        parent::__construct();
-
-        $this->serviceName = 'ic_base_amqp.service.queue_list';
-    }
+    protected $serviceName = 'ic_base_amqp.service.queue_list';
 
     /**
      * {@inheritdoc}

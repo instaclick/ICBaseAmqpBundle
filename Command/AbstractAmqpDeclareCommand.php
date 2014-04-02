@@ -15,7 +15,6 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 abstract class AbstractAmqpDeclareCommand extends AbstractAmqpCommand
 {
-
     /**
      * Delete the queues/exchanges listed as argument(s)
      *

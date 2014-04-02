@@ -3,7 +3,7 @@
  * @copyright 2014 Instaclick Inc.
  */
 
-namespace IC\Bundle\Base\AmqpBundle\Service;
+namespace IC\Bundle\Base\AmqpBundle\Service\Command;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 

@@ -25,5 +25,5 @@ class AmqpQueueDeclareCommand extends AbstractAmqpDeclareCommand
     /**
      * @var string
      */
-    protected $serviceName = 'ic_base_amqp.service.queue';
+    protected $serviceName = 'ic_base_amqp.service.command_queue';
 }

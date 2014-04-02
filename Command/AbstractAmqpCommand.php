@@ -114,7 +114,13 @@ abstract class AbstractAmqpCommand extends ContainerAwareCommand
         return $this->executeList($input, $output);
     }
 
-    protected function generateOutput($errorList, $output)
+    /**
+     * Generates output
+     *
+     * @param array                                             $errorList
+     * @param \Symfony\Component\Console\Output\OutputInterface $output
+     */
+    protected function generateOutput($errorList, OutputInterface $output)
     {
         foreach ($errorList as $error) {
             $output->writeln(sprintf("<error>[error]: %s</error>", $error));
@@ -123,7 +129,18 @@ abstract class AbstractAmqpCommand extends ContainerAwareCommand
         $output->writeln("<info>Done</info>");
     }
 
+    /**
+     * Execute a batch operation
+     *
+     * @param \Symfony\Component\Console\Output\OutputInterface $output
+     */
     abstract protected function executeAll(OutputInterface $output);
 
+    /**
+     * Execute a batch operation for a given input
+     *
+     * @param \Symfony\Component\Console\Input\InputInterface   $input
+     * @param \Symfony\Component\Console\Output\OutputInterface $output
+     */
     abstract protected function executeList(InputInterface $input, OutputInterface $output);
 }

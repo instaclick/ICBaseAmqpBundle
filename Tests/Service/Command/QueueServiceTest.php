@@ -3,10 +3,10 @@
  * @copyright 2014 Instaclick Inc.
  */
 
-namespace IC\Bundle\Base\AmqpBundle\Tests\Service;
+namespace IC\Bundle\Base\AmqpBundle\Tests\Service\Command;
 
 use IC\Bundle\Base\TestBundle\Test\TestCase;
-use IC\Bundle\Base\AmqpBundle\Service\QueueService;
+use IC\Bundle\Base\AmqpBundle\Service\Command\QueueService;
 
 /**
  * Service layer to remove queue
@@ -26,7 +26,8 @@ class QueueServiceTest extends TestCase
      */
     public function testShouldFindAll($queueList)
     {
-        $service = new QueueService;
+        $service = new QueueService();
+
         $service->setContainer(
             $this->createContainerMock(
                 $queueList
@@ -45,7 +46,8 @@ class QueueServiceTest extends TestCase
      */
     public function testShouldAnnounceQueue($queueName)
     {
-        $service = new QueueService;
+        $service = new QueueService();
+
         $service->setContainer(
             $this->createContainerMock(
                 $this->createAmqpQueueMock(
@@ -70,7 +72,8 @@ class QueueServiceTest extends TestCase
      */
     public function testShouldAnnounceQueueList($queueList)
     {
-        $service = new QueueService;
+        $service = new QueueService();
+
         $service->setContainer(
             $this->createContainerMock(
                 $this->createAmqpQueueMock(
@@ -94,7 +97,8 @@ class QueueServiceTest extends TestCase
      */
     public function testShouldNotAnnounceQueue($queueName)
     {
-        $service = new QueueService;
+        $service = new QueueService();
+
         $service->setContainer(
             $this->createContainerMock(
                 $this->createAmqpQueueMock(
@@ -120,7 +124,8 @@ class QueueServiceTest extends TestCase
      */
     public function testShouldThrowExceptionOnAnnounceQueue($queueName)
     {
-        $service = new QueueService;
+        $service = new QueueService();
+
         $service->setContainer(
             $this->createContainerMock(
                 $this->createAmqpQueueMock(
@@ -145,7 +150,8 @@ class QueueServiceTest extends TestCase
      */
     public function testShouldDeleteQueue($queueName)
     {
-        $service = new QueueService;
+        $service = new QueueService();
+
         $service->setContainer(
             $this->createContainerMock(
                 $this->createAmqpQueueMock(
@@ -170,7 +176,8 @@ class QueueServiceTest extends TestCase
      */
     public function testShouldDeleteQueueList($queueList)
     {
-        $service = new QueueService;
+        $service = new QueueService();
+
         $service->setContainer(
             $this->createContainerMock(
                 $this->createAmqpQueueMock(
@@ -194,7 +201,8 @@ class QueueServiceTest extends TestCase
      */
     public function testShouldNotDeleteQueue($queueName)
     {
-        $service = new QueueService;
+        $service = new QueueService();
+
         $service->setContainer(
             $this->createContainerMock(
                 $this->createAmqpQueueMock(
@@ -220,7 +228,8 @@ class QueueServiceTest extends TestCase
      */
     public function testShouldThrowExceptionOnDeleteQueue($queueName)
     {
-        $service = new QueueService;
+        $service = new QueueService();
+
         $service->setContainer(
             $this->createContainerMock(
                 $this->createAmqpQueueMock(
