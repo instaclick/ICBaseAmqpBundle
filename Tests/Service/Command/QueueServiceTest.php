@@ -305,8 +305,8 @@ class QueueServiceTest extends TestCase
     /**
      * Create an AmqpQueue mock
      *
-     * @param string $method
-     * @param bool   $returnValue
+     * @param string  $method
+     * @param boolean $returnValue
      *
      * @return \AmqpQueue $amqpQueueMock
      */

@@ -19,7 +19,7 @@ interface AmqpServiceInterface
      *
      * @param string $name
      *
-     * @return bool
+     * @return boolean
      */
     public function announce($name);
 
@@ -28,7 +28,7 @@ interface AmqpServiceInterface
      *
      * @param string $name
      *
-     * @return bool
+     * @return boolean
      */
     public function delete($name);
 
