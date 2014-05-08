@@ -102,6 +102,18 @@ abstract class AbstractAmqpService implements AmqpServiceInterface
     }
 
     /**
+     * {@inheritDoc}
+     *
+     * @param string $name
+     */
+    public function purge($name)
+    {
+        $queue = $this->container->get($name);
+
+        $queue->purge();
+    }
+
+    /**
      * {@inheritdoc}
      */
     abstract public function announce($name);

@@ -59,4 +59,11 @@ interface AmqpServiceInterface
      * @return \ArrayIterator
      */
     public function getErrorList();
+
+    /**
+     * Purge the named queue
+     *
+     * @param mixed $name
+     */
+    public function purge($name);
 }
