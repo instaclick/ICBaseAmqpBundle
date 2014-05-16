@@ -25,5 +25,10 @@ class AmqpExchangeDeleteCommand extends AbstractAmqpDeleteCommand
     /**
      * @var string
      */
+    protected $resourceType = 'exchange';
+
+    /**
+     * @var string
+     */
     protected $serviceName = 'ic_base_amqp.service.command_exchange';
 }

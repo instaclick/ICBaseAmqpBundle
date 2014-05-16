@@ -23,7 +23,7 @@ abstract class AbstractAmqpDeclareCommand extends AbstractAmqpCommand
      */
     protected function executeList(InputInterface $input, OutputInterface $output)
     {
-        $this->service->announceList($input->getArgument('list'));
+        $this->service->announceList($input->getArgument($this->resourceType));
 
         $this->generateOutput($this->service->getErrorList(), $output);
     }
