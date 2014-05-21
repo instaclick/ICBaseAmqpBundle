@@ -23,7 +23,7 @@ abstract class AbstractAmqpDeleteCommand extends AbstractAmqpCommand
      */
     protected function executeList(InputInterface $input, OutputInterface $output)
     {
-        $this->service->deleteList($input->getArgument('list'));
+        $this->service->deleteList($input->getArgument($this->resourceType));
 
         $this->generateOutput($this->service->getErrorList(), $output);
     }

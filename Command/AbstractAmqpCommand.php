@@ -48,12 +48,10 @@ abstract class AbstractAmqpCommand extends ContainerAwareCommand
             ->addOption(
                 'all',
                 null,
-                InputOption::VALUE_OPTIONAL,
-                null,
-                false
+                InputOption::VALUE_NONE
             )
             ->addArgument(
-                'list',
+                $this->resourceType,
                 InputArgument::IS_ARRAY | InputArgument::OPTIONAL,
                 null,
                 array()
@@ -86,10 +84,9 @@ abstract class AbstractAmqpCommand extends ContainerAwareCommand
      */
     protected function isValid(InputInterface $input, OutputInterface $output)
     {
-        if (count($input->getArgument('list')) === 0 && $input->getOption('all') === false) {
-            $output->writeln('<error>You should provide at least an option</error>');
-            $output->writeln(sprintf('<info>Usage: %s --all=true</info>', $this->commandName));
-            $output->writeln(sprintf('<info>Usage: %s my.configured.parameter.1 my.configured.parameter.2 my.configured.parameter.N</info>', $this->commandName));
+        if (count($input->getArgument($this->resourceType)) === 0 && $input->getOption('all') === false) {
+            $output->writeln(sprintf('<error>You must provide a list of one or more %ss</error>', $this->resourceType));
+            $output->writeln(sprintf('<info>Usage: %s</info>', $this->getSynopsis()));
 
             return false;
         }

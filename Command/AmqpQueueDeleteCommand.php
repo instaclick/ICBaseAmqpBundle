@@ -25,5 +25,10 @@ class AmqpQueueDeleteCommand extends AbstractAmqpDeleteCommand
     /**
      * @var string
      */
+    protected $resourceType = 'queue';
+
+    /**
+     * @var string
+     */
     protected $serviceName = 'ic_base_amqp.service.command_queue';
 }
