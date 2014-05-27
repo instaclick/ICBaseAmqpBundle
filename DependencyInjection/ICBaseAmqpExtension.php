@@ -187,7 +187,7 @@ class ICBaseAmqpExtension extends Extension
     {
         $channelServiceId = sprintf('ic_base_amqp.channel.%s', $exchangeConfiguration['channel']);
 
-        $channelReference   = new Reference($channelServiceId);AAA
+        $channelReference   = new Reference($channelServiceId);
         $exchangeDefinition = new Definition($exchangeClass, array($channelReference));
 
         $exchangeDefinition->addMethodCall('setName', array($exchangeConfiguration['name'] ?: $exchangeKey));
